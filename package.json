@@ -4,13 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "next build",
     "db:push": "prisma db push",
+    "db:generate": "prisma generate",
+    "build": "next build",
     "dev": "next dev",
-    "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
-    "generate": "prisma generate"
+    "postinstall": "pnpm db:generate"
   },
   "dependencies": {
     "@next-auth/prisma-adapter": "^1.0.7",
