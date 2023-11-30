@@ -23,7 +23,7 @@ import { NextResponse, type NextRequest } from "next/server";
 //       }
 //     }
 //   });
-const TOKEN = "Z9nI/th63boVMVYB2YEPZWwoJljv1+2OSxAfslCxWJc";
+const TOKEN = "STRAVA";
 const MODE = "subscribe";
 
 async function GET(request: NextRequest, res: NextApiResponse) {
@@ -32,9 +32,9 @@ async function GET(request: NextRequest, res: NextApiResponse) {
   const mode = url.searchParams.get("hub.mode");
   const token = url.searchParams.get("hub.verify_token");
 
-  if (!(mode && token)) return NextResponse.json({ data: {} }, { status: 400 });
-  if (!(mode === MODE && token === TOKEN))
-    return NextResponse.json({ data: {} }, { status: 403 });
+  // if (!(mode && token)) return NextResponse.json({ data: {} }, { status: 400 });
+  // if (!(mode === MODE && token === TOKEN))
+  //   return NextResponse.json({ data: {} }, { status: 403 });
 
   return NextResponse.json(
     { data: JSON.stringify({ "hub.challenge": challenge }) },
