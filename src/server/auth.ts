@@ -8,7 +8,7 @@ import { env } from "~/env.mjs";
 
 export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(db),
-
+  secret: env.NEXTAUTH_SECRET,
   providers: [
     SpotifyProvider({
       clientId: env.SPOTIFY_CLIENT_ID,

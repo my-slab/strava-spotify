@@ -19,6 +19,7 @@
     "next": "14.0.3",
     "next-auth": "^4.24.5",
     "react": "^18",
+    "react-aria-components": "1.0.0-rc.0",
     "react-dom": "^18",
     "zod": "^3.22.4"
   },
