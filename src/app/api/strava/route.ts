@@ -28,9 +28,9 @@ const MODE = "subscribe";
 
 async function GET(request: NextRequest, res: NextApiResponse) {
   const url = new URL(request.url);
-  const challenge = url.searchParams.get("challenge");
-  const mode = url.searchParams.get("mode");
-  const token = url.searchParams.get("token");
+  const challenge = url.searchParams.get("hub.challenge");
+  const mode = url.searchParams.get("hub.mode");
+  const token = url.searchParams.get("hub.verify_token");
 
   if (!(mode && token)) return NextResponse.json({ data: {} }, { status: 400 });
   if (!(mode === MODE && token === TOKEN))
