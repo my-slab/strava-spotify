@@ -23,7 +23,7 @@ import { NextResponse, type NextRequest } from "next/server";
 //       }
 //     }
 //   });
-const TOKEN = "Z9nI/th63boVMVYB2YEPZWwoJljv1+2OSxAfslCxWJc=";
+const TOKEN = "Z9nI/th63boVMVYB2YEPZWwoJljv1+2OSxAfslCxWJc";
 const MODE = "subscribe";
 
 async function GET(request: NextRequest, res: NextApiResponse) {
