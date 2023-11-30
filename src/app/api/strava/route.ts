@@ -27,11 +27,12 @@ const TOKEN = "Z9nI/th63boVMVYB2YEPZWwoJljv1+2OSxAfslCxWJc=";
 const MODE = "subscribe";
 
 async function GET(request: NextRequest, res: NextApiResponse) {
-  console.log("webhook event received!");
+  console.info("GET:: webhook event received!", request.url);
   return NextResponse.json("EVENT_RECEIVED");
 }
 
 async function POST(request: NextRequest) {
+  console.info("POST::", request.url);
   const url = new URL(request.url);
   const challenge = url.searchParams.get("challenge");
   const mode = url.searchParams.get("mode");
