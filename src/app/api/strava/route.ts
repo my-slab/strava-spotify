@@ -27,12 +27,6 @@ const TOKEN = "Z9nI/th63boVMVYB2YEPZWwoJljv1+2OSxAfslCxWJc=";
 const MODE = "subscribe";
 
 async function GET(request: NextRequest, res: NextApiResponse) {
-  console.info("GET:: webhook event received!", request.url);
-  return NextResponse.json("EVENT_RECEIVED");
-}
-
-async function POST(request: NextRequest) {
-  console.info("POST::", request.url);
   const url = new URL(request.url);
   const challenge = url.searchParams.get("challenge");
   const mode = url.searchParams.get("mode");
@@ -40,10 +34,21 @@ async function POST(request: NextRequest) {
 
   if (!(mode && token)) return NextResponse.json({ data: {} }, { status: 400 });
   if (!(mode === MODE && token === TOKEN))
-    return NextResponse.json({ data: {} }, { status: 400 });
+    return NextResponse.json({ data: {} }, { status: 403 });
 
   return NextResponse.json(
     { data: JSON.stringify({ "hub.challenge": challenge }) },
+    {
+      status: 200,
+    },
+  );
+}
+
+async function POST(request: NextRequest) {
+  console.info("POST::", request.url);
+
+  return NextResponse.json(
+    { data: [] },
     {
       status: 200,
     },
