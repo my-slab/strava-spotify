@@ -37,7 +37,7 @@ async function GET(request: NextRequest, res: NextApiResponse) {
   //   return NextResponse.json({ data: {} }, { status: 403 });
 
   return NextResponse.json(
-    { data: JSON.stringify({ "hub.challenge": challenge }) },
+    { data: { "hub.challenge": challenge } },
     {
       status: 200,
     },
