@@ -46,7 +46,7 @@ async function GET(request: NextRequest, res: NextApiResponse) {
 
 // PROCESS WEBHOOK HERE
 async function POST(request: NextRequest) {
-  console.info("POST::", request.json());
+  console.info("POST::", await request.json());
 
   return NextResponse.json(
     { data: [] },
