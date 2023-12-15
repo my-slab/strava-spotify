@@ -16,7 +16,7 @@ model Account {
   userId            String
   type              String
   provider          String
-  providerAccountId String
+  providerAccountId String  @unique
   refresh_token     String? @db.Text
   access_token      String? @db.Text
   expires_at        Int?
@@ -26,7 +26,8 @@ model Account {
   session_state     String?
   athlete           Json?
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user  User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  Event Event[]
 
   @@unique([provider, providerAccountId])
 }
@@ -55,4 +56,22 @@ model VerificationToken {
   expires    DateTime
 
   @@unique([identifier, token])
+}
+
+model Event {
+  aspectType     String
+  eventTime      Int
+  id             String @unique
+  objectType     String
+  ownerId        String
+  subscriptionId Int
+  updates        Json
+
+  subscription Subscription @relation(fields: [subscriptionId], references: [id])
+  account      Account?     @relation(fields: [ownerId], references: [providerAccountId])
+}
+
+model Subscription {
+  id    Int     @unique
+  Event Event[]
 }
